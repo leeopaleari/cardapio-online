@@ -13,4 +13,8 @@
       <ProjectReference Include="..\Infra.Data\Infra.Data.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    </ItemGroup>
+
 </Project>
