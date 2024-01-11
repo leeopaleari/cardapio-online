@@ -4,9 +4,9 @@ namespace CardapioOnline.Application.Interfaces;
 
 public interface IProductRepository
 {
-    void Create(Product product);
-    void Update(Product product);
-    void Delete(Product product);
+    Task<Product> Create(Product product);
+    Task<Product> Update(Product product);
+    Task<Product> Delete(int id);
     Task<IList<Product>> GetAllAsync();
     Task<Product> GetByIdAsync(int id);
 }

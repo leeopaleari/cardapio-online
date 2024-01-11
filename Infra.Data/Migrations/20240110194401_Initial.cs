@@ -30,24 +30,23 @@ namespace CardapioOnline.Infra.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "T_PRODUCTS",
+                name: "T_PRODUCT",
                 columns: table => new
                 {
-                    Code = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Code = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Description = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CostValue = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     SellValue = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_T_PRODUCTS", x => x.Code);
+                    table.PrimaryKey("PK_T_PRODUCT", x => x.Code);
                     table.ForeignKey(
-                        name: "FK_T_PRODUCTS_T_CATEGORY_CategoryId",
+                        name: "FK_T_PRODUCT_T_CATEGORY_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "T_CATEGORY",
                         principalColumn: "Id");
@@ -55,8 +54,8 @@ namespace CardapioOnline.Infra.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_T_PRODUCTS_CategoryId",
-                table: "T_PRODUCTS",
+                name: "IX_T_PRODUCT_CategoryId",
+                table: "T_PRODUCT",
                 column: "CategoryId");
         }
 
@@ -64,7 +63,7 @@ namespace CardapioOnline.Infra.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "T_PRODUCTS");
+                name: "T_PRODUCT");
 
             migrationBuilder.DropTable(
                 name: "T_CATEGORY");

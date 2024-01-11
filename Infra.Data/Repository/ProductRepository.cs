@@ -13,22 +13,30 @@ public class ProductRepository : IProductRepository
         _context = context;
     }
 
-    public void Create(Product product)
+    public async Task<Product> Create(Product product)
     {
         _context.Product.Add(product);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
+
+        return product;
     }
 
-    public void Update(Product product)
+    public async Task<Product> Update(Product product)
     {
         _context.Product.Update(product);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
+
+        return product;
     }
 
-    public void Delete(Product product)
+    public async Task<Product> Delete(int id)
     {
+        var product = await _context.Product.FindAsync(id);
+
         _context.Product.Remove(product);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
+
+        return product;
     }
 
     public async Task<IList<Product>> GetAllAsync()

@@ -1,4 +1,7 @@
+using CardapioOnline.Application.Interfaces;
+using CardapioOnline.Application.Services;
 using CardapioOnline.Infra.Data;
+using CardapioOnline.Infra.Data.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +17,13 @@ public static class DependencyInjection
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString),
                 x => x.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-        
+
+
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+        services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IProductService, ProductService>();
+
         return services;
     }
 }

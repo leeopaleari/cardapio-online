@@ -1,6 +1,7 @@
 using AutoMapper;
 using CardapioOnline.Application.DTOs;
 using CardapioOnline.Application.Interfaces;
+using CardapioOnline.Domain.Entities;
 
 namespace CardapioOnline.Application.Services;
 
@@ -15,28 +16,40 @@ public class ProductService : IProductService
         _mapper = mapper;
     }
 
-    public Task<CreateProductDto> Create(CreateProductDto product)
+    public async Task<CreateProductDto> Create(CreateProductDto productDto)
     {
-        throw new NotImplementedException();
+        var product = _mapper.Map<Product>(productDto);
+        var createdProduct = await _repository.Create(product);
+
+        return _mapper.Map<CreateProductDto>(createdProduct);
     }
 
-    public Task<UpdateProductDto> Update(UpdateProductDto product)
+    public async Task<UpdateProductDto> Update(UpdateProductDto productDto)
     {
-        throw new NotImplementedException();
+        var product = _mapper.Map<Product>(productDto);
+        var updatedProduct = await _repository.Update(product);
+
+        return _mapper.Map<UpdateProductDto>(updatedProduct);
     }
 
-    public Task<UpdateProductDto> Delete(UpdateProductDto product)
+    public async Task<UpdateProductDto> Delete(int id)
     {
-        throw new NotImplementedException();
+        var deletedProduct = await _repository.Delete(id);
+
+        return _mapper.Map<UpdateProductDto>(deletedProduct);
     }
 
-    public Task<IList<ReadProductDto>> GetAllAsync()
+    public async Task<IList<ReadProductDto>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        var products = await _repository.GetAllAsync();
+
+        return _mapper.Map<IList<ReadProductDto>>(products);
     }
 
-    public Task<ReadProductDto> GetByIdAsync(int id)
+    public async Task<ReadProductDto> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        var product = await _repository.GetByIdAsync(id);
+
+        return _mapper.Map<ReadProductDto>(product);
     }
 }

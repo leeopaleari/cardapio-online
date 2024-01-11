@@ -7,9 +7,8 @@ builder.Services.AddInfraStructure(builder.Configuration);
 builder.Services.AddInfrastructureCors();
 builder.Services.AddInfraStructureSwagger();
 
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+// builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers();
-
 
 var app = builder.Build();
 
@@ -27,5 +26,4 @@ app.UseRouting();
 app.MapControllers();
 app.UseCors();
 
-Console.WriteLine($">>>>>> {typeof(ApplicationDbContext).Assembly}");
 app.Run();

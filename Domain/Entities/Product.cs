@@ -13,8 +13,8 @@ public class Product
 
     public decimal SellValue { get; private set; }
 
-    public int CategoryId { get; set; }
-    public Category Category { get; set; }
+    // public int CategoryId { get; set; }
+    // public Category Category { get; set; }
 
     public Product(int code, string name, string? description, decimal costValue, decimal sellValue)
     {
