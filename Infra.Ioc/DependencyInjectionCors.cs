@@ -13,7 +13,7 @@ public static class DependencyInjectionCors
             options.AddPolicy(MyAllowSpecificOrigins,
                 policy =>
                 {
-                    policy.WithOrigins("http://localhost:8100")
+                    policy.WithOrigins("http://0.0.0.0:8100")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 });

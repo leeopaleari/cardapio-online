@@ -35,8 +35,8 @@ public static class DependencyInjection
                 ValidateLifetime = true,
                 ValidateIssuerSigningKey = true,
 
-                ValidIssuer = configuration["Jwt:issuer"],
-                ValidAudience = configuration["Jwt:audience"],
+                // ValidIssuer = configuration["Jwt:issuer"],
+                // ValidAudience = configuration["Jwt:audience"],
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:secretKey"]!)),
                 ClockSkew = TimeSpan.Zero
             };
