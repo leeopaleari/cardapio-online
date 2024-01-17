@@ -7,7 +7,7 @@ public class ApplicationDbContext : DbContext
 {
     public DbSet<Product> Product { get; set; }
     public DbSet<Category> Category { get; set; }
-    public DbSet<User> Client { get; set; }
+    public DbSet<User> User { get; set; }
     
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
